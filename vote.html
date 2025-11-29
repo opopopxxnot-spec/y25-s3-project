@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Indian Voting Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            /* Beautiful background image with fade-in */
+            background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            animation: bgFadeIn 2s linear;
+        }
+        @keyframes bgFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        header {
+            background: rgba(11, 114, 185, 0.93);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            box-shadow: 0 4px 18px rgba(44, 123, 201, 0.22);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            letter-spacing: 0.07em;
+            animation: slideDown 1.5s;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1;}
+        }
+        .container {
+            max-width: 480px;
+            margin: 2.5rem auto;
+            background: rgba(255,255,255, 0.91);
+            box-shadow: 0 8px 32px rgba(23, 80, 130, 0.18);
+            border-radius: 18px;
+            padding: 2.3rem 2.2rem;
+            position: relative;
+            backdrop-filter: blur(3px);
+            /* Animate appearance */
+            animation: cardAppear 1.7s cubic-bezier(0.36,1,0.62,1);
+        }
+        @keyframes cardAppear {
+            from { transform: scale(0.85) translateY(30px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        h2 {
+            color: #0b72b9;
+            margin-top: 0;
+            letter-spacing: 0.11em;
+            font-size: 1.82rem;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1;}
+        }
+        form {
+            margin-top: 1.3rem;
+        }
+        label {
+            display: block;
+            margin-bottom: .5rem;
+            font-weight: 700;
+            color: #205081;
+            letter-spacing: 0.06em;
+            transition: color 0.3s;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.875rem;
+            margin-bottom: 1.1rem;
+            border: 1.7px solid #7bb1ec;
+            border-radius: 7px;
+            background: #f6fbff;
+            font-size: 1.07rem;
+            transition: border 0.23s, box-shadow 0.3s;
+            box-shadow: 0 1px 5px rgba(44, 123, 201, 0.07);
+        }
+        input:focus, select:focus {
+            border: 2px solid #0b72b9;
+            outline: none;
+            box-shadow: 0 4px 9px rgba(44, 123, 201, 0.15);
+            background: #e2f1ff;
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(90deg,#0b72b9 30%,#28c7fa 100%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.15rem;
+            padding: 1.06rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 0.7rem;
+            box-shadow: 0 2px 8px rgba(44, 123, 201, 0.13);
+            letter-spacing: 0.07em;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.17s;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover {
+            background: linear-gradient(90deg,#095b95 30%,#13b3e1 100%);
+            box-shadow: 0 10px 22px rgba(44, 123, 201, 0.12);
+            transform: scale(1.035);
+        }
+        button::after {
+            content: "";
+            position: absolute;
+            left: -100%;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(255,255,255,0.25);
+            transition: left 0.4s;
+        }
+        button:hover::after {
+            left: 0;
+        }
+        .note {
+            font-size: 1.02rem;
+            color: #444;
+            margin-top: 1.2rem;
+            background: #eaf4fc;
+            padding: 0.80rem;
+            border-radius: 7px;
+            text-align: center;
+            border: 1.3px solid #cde3f6;
+            animation: fadeInUp 2.1s;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(32px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        /* Glow effect for container on hover */
+        .container:hover {
+            box-shadow: 0 12px 45px rgba(23,80,130,0.27);
+            transition: box-shadow 0.5s;
+        }
+        @media (max-width:600px) {
+            .container {
+                padding: 1rem;
+                max-width: 97vw;
+            }
+            header {
+                padding: 1.1rem 0 0.65rem 0;
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>India Voting System Enhancement Portal</h1>
+        <p>Secure & Transparent Digital Voting</p>
+    </header>
+    <div class="container">
+        <h2>Cast Your Vote</h2>
+        <form>
+            <label for="voterid">Voter ID</label>
+            <input type="text" id="voterid" name="voterid" required>
+            
+            <label for="constituency">Constituency</label>
+            <select id="constituency" name="constituency" required>
+                <option value="">Select Constituency</option>
+                <option value="Central">Central</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+            </select>
+            
+            <label for="candidate">CHOOSE CANDIDATE</label>
+            <select id="candidate" name="candidate" required>
+                <option value="">Select Candidate</option>
+                <option value="A">Candidate A</option>
+                <option value="B">Candidate B</option>
+                <option value="C">Candidate C</option>
+            </select>
+            
+            <button type="submit">Submit Vote</button>
+        </form>
+        <div class="note">
+            Your vote is <b>secure</b> and <b>confidential</b>.
+        </div>
+    </div>
+</body>
+</html>

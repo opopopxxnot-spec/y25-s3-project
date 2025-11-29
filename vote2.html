@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Voter Education — Pros & Cons + Sources</title>
+<link rel="preconnect" href="https://images.unsplash.com">
+<style>
+  /* ---------- Theme & layout ---------- */
+  :root{
+    --bg1:#071428; --bg2:#031927;
+    --glass: rgba(255,255,255,0.03);
+    --accent1: #06b6d4; --accent2:#60a5fa;
+    --muted: #9fb4c9;
+    --card-radius:16px;
+    --shadow: 0 10px 30px rgba(2,6,23,0.6);
+    --glass-border: rgba(255,255,255,0.03);
+    --glass-2: rgba(255,255,255,0.02);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e6f0fb;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:28px auto;padding:20px;display:grid;grid-template-columns:340px 1fr;gap:20px;align-items:start}
+  .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--card-radius);padding:18px;border:1px solid var(--glass-border);box-shadow:var(--shadow)}
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;font-weight:800;color:#021024}
+  h1{margin:0;font-size:20px}
+  .subtitle{color:var(--muted);font-size:13px;margin-top:6px}
+
+  /* sidebar */
+  .sidebar {position:sticky;top:28px}
+  .nav{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .nav button{padding:10px 12px;border-radius:10px;border:0;background:transparent;color:var(--accent2);text-align:left;font-weight:700;cursor:pointer;transition:transform .18s,background .18s}
+  .nav button:hover{transform:translateX(6px); color:#cfeffb}
+  .nav button.active{background:linear-gradient(90deg, rgba(96,165,250,0.06), rgba(6,182,212,0.05)); color:#fff}
+
+  .sources{margin-top:18px;font-size:13px}
+  .sources a{color:var(--accent1);text-decoration:none;font-weight:600}
+  .hint{color:var(--muted);font-size:13px;margin-top:8px}
+
+  /* content */
+  .content{min-height:520px}
+  .hero{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:center}
+  .hero-card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border)}
+  .hero-img{border-radius:12px;overflow:hidden;height:180px;box-shadow: 0 10px 30px rgba(2,6,23,0.6)}
+  .select-row{display:flex;gap:12px;align-items:center;margin-top:12px}
+  select, input[type="text"]{padding:10px;border-radius:10px;border:1px solid var(--glass-border);background:transparent;color:inherit;outline:none}
+
+  /* party cards */
+  .party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:18px}
+  .party{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .28s,box-shadow .28s}
+  .party:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(2,6,23,0.7)}
+  .party .cover{height:140px;background-size:cover;background-position:center}
+  .party .body{padding:12px;background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.3));display:flex;flex-direction:column;gap:8px}
+  .party h3{margin:0;font-size:16px}
+  .tag{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700;color:var(--accent2);font-size:12px}
+
+  /* pros cons panel */
+  .panel-large{padding:18px;border-radius:16px}
+  .pc-row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  .pc{flex:1;min-width:240px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:12px;border-radius:12px;border:1px solid var(--glass-2);transition:transform .2s}
+  .pc h4{margin:0 0 8px 0}
+  .pc ul{margin:0;padding-left:18px;color:var(--muted)}
+  .pc.pos{box-shadow:0 8px 30px rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.06)}
+  .pc.neg{box-shadow:0 8px 30px rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.04)}
+
+  /* collapsible animations */
+  .collapsible{overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.2,.9,.2,1),opacity .25s}
+  .collapsible.open{max-height:600px;opacity:1}
+
+  /* sources cards */
+  .source-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .source{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.01)}
+  .source img{width:56px;height:56px;border-radius:9px;object-fit:cover}
+  .source .meta{font-size:13px}
+  .source a{color:var(--accent1);font-weight:700;text-decoration:none}
+
+  /* fancy floating CTA */
+  .cta{position:fixed;right:20px;bottom:20px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021024;font-weight:800;box-shadow:0 15px 40px rgba(6,182,212,0.12);cursor:pointer}
+
+  /* small screens */
+  @media (max-width:980px){
+    .wrap{grid-template-columns:1fr; padding:14px}
+    .hero{grid-template-columns:1fr}
+    .cta{right:12px;left:12px}
+  }
+
+  /* icons and micro-animations */
+  .fade-in{animation:fadeIn .6s ease both}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .pulse{animation:pulse .9s ease infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(96,165,250,0.08)}70%{box-shadow:0 0 0 10px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- SIDEBAR -->
+    <aside class="panel sidebar">
+      <div class="brand">
+        <div class="logo">V</div>
+        <div>
+          <h1>Voter Smartboard</h1>
+          <div class="subtitle">Check pros, cons & trusted sources before you vote</div>
+        </div>
+      </div>
+
+      <div class="nav" role="navigation" aria-label="Primary">
+        <button class="active" data-section="explore">Explore Parties</button>
+        <button data-section="compare">Compare Pros/Cons</button>
+        <button data-section="sources">Trusted Sources</button>
+      </div>
+
+      <div class="sources">
+        <div style="font-size:13px;font-weight:800;margin-top:12px">Quick research links</div>
+        <div class="hint">Use these to verify candidate background, manifestos, fact checks & legislation records.</div>
+
+        <ul style="margin-top:12px;padding-left:18px">
+          <li><a href="https://www.eci.gov.in/" target="_blank" rel="noopener">Election Commission of India (ECI)</a> — official election data & affidavits. </li>
+          <li><a href="https://www.myneta.info/" target="_blank" rel="noopener">MyNeta — candidate affidavits & criminal/asset disclosures</a></li>
+          <li><a href="https://adrindia.org/" target="_blank" rel="noopener">Association for Democratic Reforms (ADR)</a> — analyses on party finances & reforms</li>
+          <li><a href="https://prsindia.org/" target="_blank" rel="noopener">PRS Legislative Research</a> — MP/MLA performance & bill tracking</li>
+          <li><a href="https://altnews.in/" target="_blank" rel="noopener">Alt News</a> & <a href="https://factly.in/" target="_blank" rel="noopener">Factly</a> — independent fact-checking</li>
+        </ul>
+
+        <div class="hint" style="margin-top:12px">(Sources above are shown for India by default; if you need country-specific sources tell me and I’ll add them.)</div>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <!-- HERO -->
+      <div class="hero panel hero-card fade-in">
+        <div>
+          <h2 style="margin:0 0 6px 0">Don't vote blind — research first</h2>
+          <div class="subtitle">Pick a party to see neutral pros, cons, and quick links to trusted sources & recent articles.</div>
+
+          <div class="select-row">
+            <label for="partySelect" class="muted">Select party</label>
+            <select id="partySelect" aria-label="Select party" style="margin-left:10px">
+              <option value="">— Choose a party —</option>
+              <option value="partyA">Party A — Progressive Forward</option>
+              <option value="partyB">Party B — Unity & Growth</option>
+              <option value="partyC">Party C — Green Future</option>
+            </select>
+            <button id="openCompare" style="margin-left:auto" class="tag">Compare</button>
+          </div>
+
+          <!-- animated summary -->
+          <div id="quickSummary" class="panel-large" style="margin-top:16px;border-radius:12px;display:none">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div style="width:84px;height:84px;border-radius:12px;overflow:hidden;flex-shrink:0" id="summaryImg"></div>
+              <div>
+                <div id="summaryTitle" style="font-weight:800"></div>
+                <div id="summaryTag" class="hint" style="margin-top:6px"></div>
+              </div>
+            </div>
+            <div id="summaryText" class="muted" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <div class="hero-img" style="display:flex;flex-direction:column;gap:12px;align-items:stretch">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=60" alt="voting" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+
+      <!-- PARTY GRID -->
+      <div class="party-grid" id="partyGrid" style="margin-top:18px">
+        <!-- cards injected by JS -->
+      </div>
+
+      <!-- Pros / Cons panel -->
+      <div id="pcPanel" class="panel panel-large fade-in" style="margin-top:18px;display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="margin:0">Pros & Cons — <span id="pcTitle"></span></h3>
+          <div style="font-size:13px;color:var(--muted)">Neutral summaries + quick research links</div>
+        </div>
+
+        <div class="pc-row" style="margin-top:12px">
+          <div class="pc pos">
+            <h4>Potential Pros</h4>
+            <ul id="prosList"></ul>
+          </div>
+          <div class="pc neg">
+            <h4>Potential Cons</h4>
+            <ul id="consList"></ul>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <button id="moreBtn" class="tag">Show source links & recent coverage</button>
+          <div id="morePanel" class="collapsible" style="margin-top:12px;opacity:0">
+            <div class="source-list" id="sourceList"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- compare / education -->
+      <div id="comparePanel" class="panel fade-in" style="margin-top:18px;display:none">
+        <h3 style="margin:0 0 6px 0">Compare parties side-by-side</h3>
+        <div class="muted">Neutral checklist to help you compare policy, governance record, finances & promises.</div>
+
+        <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+          <div class="pc" style="min-width:220px">
+            <h4>Checklist</h4>
+            <ul class="muted">
+              <li>Has the party published a detailed manifesto / costed plan?</li>
+              <li>Candidate/funding transparency (affidavits on MyNeta / ADR)</li>
+              <li>Legislative record (PRS reports on bills & attendance)</li>
+              <li>Independent fact-checks for big claims (AltNews / Factly)</li>
+              <li>Recent reliable news analysis (The Indian Express / The Hindu)</li>
+            </ul>
+          </div>
+
+          <div class="pc" style="min-width:220px">
+            <h4>How to judge sources</h4>
+            <ul class="muted">
+              <li>Prefer official documents (ECI affidavits) for candidate facts</li>
+              <li>Cross-check claims across 2+ reputable outlets</li>
+              <li>Use fact-checkers to debunk viral misinformation</li>
+              <li>Beware of echo chambers and paid/social amplification</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- floating CTA -->
+    <button class="cta pulse" id="educateBtn">Quick Educate • Sources</button>
+  </div>
+
+<script>
+/* ---------- data (neutral templates) ---------- */
+const parties = {
+  partyA: {
+    id: 'partyA',
+    name: 'Party A — Progressive Forward',
+    img: 'https://images.unsplash.com/photo-1529336953126-5c9b5b6c6a35?auto=format&fit=crop&w=1200&q=60',
+    tag: 'Focus: urban infrastructure, education & tech',
+    summary: 'Emphasizes modernisation, tech-led governance and urban development. Often highlights education, digital initiatives and private investment.',
+    pros: [
+      'Clear focus on digital infrastructure & e-governance plans.',
+      'Policy proposals often emphasize tech, startups and education.',
+      'Typically strong urban development agendas which can boost jobs in cities.'
+    ],
+    cons: [
+      'May prioritise urban projects over rural welfare in some plans.',
+      'Private investment emphasis can raise concerns about inequality.',
+      'Look for details & costings — sometimes promises need clearer financing.'
+    ],
+    tagwords: ['manifesto', 'digital', 'education']
+  },
+  partyB: {
+    id: 'partyB',
+    name: 'Party B — Unity & Growth',
+    img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=60',
+    tag: 'Focus: jobs, industrial policy & domestic industry',
+    summary: 'Positions itself around manufacturing, job creation and broader economic measures. Often stresses national unity and large-scale schemes.',
+    pros: [
+      'Focus on job creation and industrial growth can raise employment.',
+      'May present detailed plans for manufacturing & supply chain development.',
+      'Often appeals to wider voter base through coalition-building.'
+    ],
+    cons: [
+      'Large-scale schemes can be expensive; check funding sources.',
+      'Policy details sometimes lack specificity on implementation timelines.',
+      'Watch for trade-offs between short-term stimulus and long-term sustainability.'
+    ],
+    tagwords: ['jobs', 'industry', 'coalition']
+  },
+  partyC: {
+    id: 'partyC',
+    name: 'Party C — Green Future',
+    img: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=60',
+    tag: 'Focus: environment, renewables & local livelihoods',
+    summary: 'Prioritises environment, renewable energy and rural livelihoods. Emphasizes sustainable development and conservation measures.',
+    pros: [
+      'Clear emphasis on renewable energy & climate resilience.',
+      'Policy focus on sustainable rural livelihoods and green jobs.',
+      'Appeals to voters prioritising long-term environmental sustainability.'
+    ],
+    cons: [
+      'Green transitions can require significant short-term subsidies.',
+      'Need scrutiny of timelines & how jobs will be created during transition.',
+      'May face opposition where industrial growth is immediate priority.'
+    ],
+    tagwords: ['green', 'renewable', 'rural']
+  }
+};
+
+/* ---------- UI plumbing ---------- */
+const partyGrid = document.getElementById('partyGrid');
+const partySelect = document.getElementById('partySelect');
+const quickSummary = document.getElementById('quickSummary');
+const summaryImg = document.getElementById('summaryImg');
+const summaryTitle = document.getElementById('summaryTitle');
+const summaryTag = document.getElementById('summaryTag');
+const summaryText = document.getElementById('summaryText');
+
+const pcPanel = document.getElementById('pcPanel');
+const pcTitle = document.getElementById('pcTitle');
+const prosList = document.getElementById('prosList');
+const consList = document.getElementById('consList');
+const moreBtn = document.getElementById('moreBtn');
+const morePanel = document.getElementById('morePanel');
+const sourceList = document.getElementById('sourceList');
+
+const comparePanel = document.getElementById('comparePanel');
+const educateBtn = document.getElementById('educateBtn');
+
+function makePartyCard(p){
+  const div = document.createElement('div');
+  div.className = 'party fade-in';
+  div.innerHTML = `
+    <div class="cover" style="background-image:url('${p.img}')"></div>
+    <div class="body">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>${p.name}</h3>
+        <div class="tag">${p.tag.split(':').pop().trim()}</div>
+      </div>
+      <div class="muted" style="font-size:13px">${p.summary}</div>
+    </div>
+  `;
+  div.addEventListener('click', ()=> showParty(p.id));
+  return div;
+}
+
+/* populate grid */
+Object.values(parties).forEach(p => partyGrid.appendChild(makePartyCard(p)));
+
+/* show party from select or card */
+function showParty(id){
+  if(!id) { pcPanel.style.display='none'; quickSummary.style.display='none'; return; }
+  const p = parties[id];
+  partySelect.value = id;
+  // summary
+  quickSummary.style.display = 'block';
+  summaryImg.innerHTML = `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px">`;
+  summaryTitle.textContent = p.name;
+  summaryTag.textContent = p.tag;
+  summaryText.textContent = p.summary;
+
+  // pros/cons panel
+  pcPanel.style.display = 'block';
+  pcTitle.textContent = p.name;
+  prosList.innerHTML = p.pros.map(x=>`<li>${x}</li>`).join('');
+  consList.innerHTML = p.cons.map(x=>`<li>${x}</li>`).join('');
+  // setup sources (neutral, helpful)
+  populateSources(id);
+  // close source panel
+  morePanel.classList.remove('open');
+  morePanel.style.opacity = 0;
+}
+
+/* more panel toggle */
+moreBtn.addEventListener('click', ()=>{
+  if(morePanel.classList.contains('open')) {
+    morePanel.classList.remove('open');
+    morePanel.style.opacity = 0;
+  } else {
+    morePanel.classList.add('open');
+    // small delay so animation looks smooth
+    setTimeout(()=> morePanel.style.opacity = 1, 30);
+  }
+});
+
+/* populate trustworthy sources list (neutral) */
+function populateSources(partyId){
+  // neutral, non-judgmental sources & example queries
+  const p = parties[partyId];
+  const list = [
+    {
+      title: 'Election Commission of India — official resources & affidavits',
+      desc: 'Check official candidate affidavits, election results and notices.',
+      url: 'https://www.eci.gov.in/',
+      img: 'https://images.unsplash.com/photo-1581093588401-1c5e82b19f33?auto=format&fit=crop&w=800&q=60'
+    },
+    {
+      title: 'MyNeta — candidate criminal/asset disclosures (affidavits)',
+      desc: 'Use MyNeta to read declared assets, education and criminal cases for candidates.',
+      url: 'https://www.myneta.info/',
+      img: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=800&q=60'
+    },
+    {
+      title: 'ADR / PRS — party finances & legislative records',
+      desc: 'ADR analyses party finance disclosures; PRS tracks MPs/MLAs and bill performance.',
+      url: 'https://adrindia.org/',
+      img: 'https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=60'
+    },
+    {
+      title: 'Fact-checkers (AltNews / Factly)',
+      desc: 'Verify viral claims and campaign ads before trusting them.',
+      url: 'https://altnews.in/',
+      img: 'https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=800&q=60'
+    },
+    {
+      title: 'Reputable newspapers (Indian Express / The Hindu)',
+      desc: 'For reporting & in-depth analysis; cross-check across outlets for balance.',
+      url: 'https://indianexpress.com/',
+      img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=60'
+    }
+  ];
+  sourceList.innerHTML = list.map(s => `
+    <div class="source">
+      <img src="${s.img}" alt="${s.title}">
+      <div class="meta">
+        <div style="font-weight:800"><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></div>
+        <div class="muted" style="font-size:13px">${s.desc}</div>
+        <div style="margin-top:6px"><a href="${s.url}" target="_blank" rel="noopener" style="font-size:13px">Open →</a>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        <a href="${makeSearchUrl(p.tagwords.join(' '), p.name)}" target="_blank" rel="noopener" style="font-size:13px">Search latest articles</a></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* helper: craft a search URL for quick latest articles (site-agnostic) */
+function makeSearchUrl(topic, partyName){
+  const q = encodeURIComponent(partyName + ' ' + topic + ' policy manifesto');
+  return 'https://www.google.com/search?q=' + q;
+}
+
+/* nav */
+document.querySelectorAll('.nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const s = btn.dataset.section;
+    if(s==='explore'){ document.getElementById('partyGrid').scrollIntoView({behavior:'smooth'}); comparePanel.style.display='none'; pcPanel.style.display='block'; }
+    if(s==='compare'){ comparePanel.style.display='block'; pcPanel.style.display='none'; document.getElementById('comparePanel').scrollIntoView({behavior:'smooth'}); }
+    if(s==='sources'){ document.querySelector('.sidebar').scrollIntoView({behavior:'smooth'}); }
+  });
+});
+
+/* select change */
+partySelect.addEventListener('change', ()=> showParty(partySelect.value) );
+
+/* floating CTA */
+educateBtn.addEventListener('click', ()=>{
+  document.querySelectorAll('.nav button')[2].click();
+  document.querySelector('.sidebar').scrollIntoView({behavior:'smooth'});
+});
+
+/* initial */
+document.getElementById('pcPanel').style.display = 'none';
+document.getElementById('comparePanel').style.display = 'none';
+
+/* small keyboard accessibility */
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){
+    morePanel.classList.remove('open'); morePanel.style.opacity = 0;
+  }
+});
+</script>
+</body>
+</html>
