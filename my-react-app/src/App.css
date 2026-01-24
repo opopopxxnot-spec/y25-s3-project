@@ -1,0 +1,88 @@
+/* Reset everything */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Make full viewport available */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Page background */
+body {
+  background-color: #5b0f1b; /* maroon */
+}
+
+/* CENTER BOTH CARDS PERFECTLY */
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  gap: 24px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Base card style */
+.card {
+  background: linear-gradient(135deg, #7b2cbf, #5a189a);
+  color: white;
+  border-radius: 14px;
+  border: 2px solid #3c096c;
+  box-shadow:
+    2px 0px 6px rgba(0, 0, 0, 0.4),
+    0px 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Profile card */
+.profile-card {
+  width: 420px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Image */
+.profile-pic {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  margin-right: 18px;
+  border: 2px solid #e0aaff;
+}
+
+/* Text */
+.details h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.details p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* Stats card */
+.stats-card {
+  width: 460px;
+  padding: 18px 10px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat h3 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.stat p {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: 0.9;
+}
